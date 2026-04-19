@@ -8,31 +8,27 @@ import { Footer } from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Trending Dev & AI Tools",
-  description: "A fast, minimal, and highly readable interface optimized for developers and tech users.",
+	title: "Trending Dev & AI Tools",
+	description: "A fast, minimal, and highly readable interface optimized for developers and tech users.",
+	verification: {
+		google: "koZPZMIKXDUY8Cu5pQpgjfLLFaeljTy-LFb6q5h5LPw",
+	},
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} antialiased min-h-screen flex flex-col`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Header />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en" suppressHydrationWarning>
+			<body className={`${inter.variable} antialiased min-h-screen flex flex-col`}>
+				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+					<Header />
+					<main className="flex-1">{children}</main>
+					<Footer />
+				</ThemeProvider>
+			</body>
+		</html>
+	);
 }
