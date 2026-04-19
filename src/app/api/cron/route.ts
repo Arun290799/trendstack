@@ -9,10 +9,10 @@ export const maxDuration = 300; // Allow more time for external requests
 
 export async function GET(req: Request) {
 	// Check for secret key
-	// const secret = req.headers.get("authorization");
-	// if (secret !== process.env.CRON_SECRET_KEY) {
-	// 	return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-	// }
+	const secret = req.headers.get("Authorization");
+	if (secret !== `Bearer ${process.env.CRON_SECRET}`) {
+		return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+	}
 
 	try {
 		const startTime = Date.now();

@@ -22,6 +22,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
+			<head>
+				<meta name="google-site-verification" content="koZPZMIKXDUY8Cu5pQpgjfLLFaeljTy-LFb6q5h5LPw" />
+			</head>
 			<body className={`${inter.variable} antialiased min-h-screen flex flex-col`}>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 					<Header />
