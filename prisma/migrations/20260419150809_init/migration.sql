@@ -9,6 +9,7 @@ CREATE TABLE "Trend" (
     "score" INTEGER NOT NULL DEFAULT 0,
     "summary" TEXT,
     "category" TEXT NOT NULL,
+    "postCreatedAt" TIMESTAMP(3) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

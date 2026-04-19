@@ -1,19 +1,19 @@
 export default function sitemap() {
 	return [
 		{
-			url: "https://yourdomain.com",
+			url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
 		},
 		{
-			url: "https://yourdomain.com/trending-today",
+			url: `${process.env.NEXT_PUBLIC_APP_URL}/trending-today`,
 		},
 		{
-			url: "https://yourdomain.com/trending-this-week",
+			url: `${process.env.NEXT_PUBLIC_APP_URL}/trending-this-week`,
 		},
 		{
-			url: "https://yourdomain.com/category/ai-tools",
+			url: `${process.env.NEXT_PUBLIC_APP_URL}/category/ai-tools`,
 		},
 		{
-			url: "https://yourdomain.com/category/dev-tools",
+			url: `${process.env.NEXT_PUBLIC_APP_URL}/category/dev-tools`,
 		},
 	];
 }
