@@ -7,7 +7,13 @@ import { insertTrend, checkIfExists } from "@/lib/db";
 export const dynamic = "force-dynamic";
 export const maxDuration = 300; // Allow more time for external requests
 
-export async function GET() {
+export async function GET(req: Request) {
+	// Check for secret key
+	// const secret = req.headers.get("authorization");
+	// if (secret !== process.env.CRON_SECRET_KEY) {
+	// 	return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+	// }
+
 	try {
 		const startTime = Date.now();
 		console.log("Starting cron job...");
