@@ -1,0 +1,15 @@
+name: Trend Aggregation Cron
+
+on:
+    schedule:
+        - cron: "0 */3 * * *" # every 3 hours
+    workflow_dispatch: # allows manual trigger
+
+jobs:
+    run-cron:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Call Vercel Cron API
+              run: |
+                  curl -X GET "https://trendstack-xi.vercel.app/api/cron?key=${{ secrets.CRON_SECRET }}"
