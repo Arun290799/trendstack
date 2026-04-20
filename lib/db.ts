@@ -46,18 +46,14 @@ export async function getTrends(limit: number = 50) {
 }
 
 export async function getTrendsFromToday(limit: number = 50) {
-	const today = new Date();
-	const todayStart = new Date(today);
-	todayStart.setHours(0, 0, 0, 0); // Start of today
-
-	const todayEnd = new Date(today);
-	todayEnd.setHours(23, 59, 59, 999); // End of today
+	const now = new Date();
+	const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000); // 24 hours ago
 
 	const trends = await prisma.trend.findMany({
 		where: {
 			postCreatedAt: {
-				gte: todayStart,
-				lte: todayEnd,
+				gte: twentyFourHoursAgo,
+				lte: now,
 			},
 		},
 		take: limit,

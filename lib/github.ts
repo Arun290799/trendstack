@@ -56,7 +56,7 @@ export async function fetchGithubTrends(): Promise<GithubTrend[]> {
 
 		return items.map((item: GitHubRepoItem) => ({
 			id: `gh-${item.id}`,
-			title: item.full_name,
+			title: item.full_name.split("/")[1], // Extract only repository name
 			url: item.html_url,
 			stars: item.stargazers_count,
 			forks: item.forks_count,
