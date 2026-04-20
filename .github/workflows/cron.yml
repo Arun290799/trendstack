@@ -12,4 +12,5 @@ jobs:
         steps:
             - name: Call Vercel Cron API
               run: |
-                  curl -X GET "https://trendstack-xi.vercel.app/api/cron?key=${{ secrets.CRON_SECRET }}"
+                  curl -X GET "https://trendstack-xi.vercel.app/api/cron" \
+                    -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}"
