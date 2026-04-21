@@ -30,13 +30,13 @@ export function Header() {
 							href="/category/ai"
 							className="text-sm font-medium text-muted hover:text-foreground transition-colors"
 						>
-							AI Tools
+							Trending AI Tools
 						</Link>
 						<Link
 							href="/category/dev"
 							className="text-sm font-medium text-muted hover:text-foreground transition-colors"
 						>
-							Dev Tools
+							Trending Dev Tools
 						</Link>
 					</nav>
 				</div>

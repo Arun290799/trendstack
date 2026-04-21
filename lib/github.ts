@@ -1,4 +1,5 @@
 import { calculateScore } from "./ranking";
+import { extractGitHubKeywords } from "./keyword-extraction";
 
 interface GitHubRepoItem {
 	id: number;
@@ -8,6 +9,8 @@ interface GitHubRepoItem {
 	forks_count: number;
 	description: string | null;
 	created_at: string;
+	topics: string[];
+	language: string | null;
 }
 
 interface GitHubSearchResponse {
@@ -24,6 +27,7 @@ export interface GithubTrend {
 	description: string;
 	category: string;
 	createdAt: string;
+	keywords: string[];
 }
 
 export async function fetchGithubTrends(): Promise<GithubTrend[]> {
@@ -54,17 +58,22 @@ export async function fetchGithubTrends(): Promise<GithubTrend[]> {
 		const data: GitHubSearchResponse = await response.json();
 		const items = data.items || [];
 
-		return items.map((item: GitHubRepoItem) => ({
-			id: `gh-${item.id}`,
-			title: item.full_name.split("/")[1], // Extract only repository name
-			url: item.html_url,
-			stars: item.stargazers_count,
-			forks: item.forks_count,
-			score: calculateScore(item.stargazers_count, item.forks_count, 0),
-			description: item.description || "",
-			category: "dev",
-			createdAt: item.created_at,
-		}));
+		return items.map((item: GitHubRepoItem) => {
+			const keywords = extractGitHubKeywords(item.topics || [], item.language || "", item.description || "");
+
+			return {
+				id: `gh-${item.id}`,
+				title: item.full_name, // Include full name for handle/title display
+				url: item.html_url,
+				stars: item.stargazers_count,
+				forks: item.forks_count,
+				score: calculateScore(item.stargazers_count, item.forks_count, 0),
+				description: item.description || "",
+				category: "dev",
+				createdAt: item.created_at,
+				keywords,
+			};
+		});
 	} catch (error) {
 		console.error("Failed to fetch GitHub trends:", error);
 		return [];

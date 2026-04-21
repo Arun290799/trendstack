@@ -81,6 +81,7 @@ export const TrendScalarFieldEnum = {
   summary: 'summary',
   category: 'category',
   postCreatedAt: 'postCreatedAt',
+  keywords: 'keywords',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

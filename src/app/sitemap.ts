@@ -1,19 +1,42 @@
 export default function sitemap() {
+	const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+
 	return [
 		{
-			url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+			url: baseUrl,
 		},
 		{
-			url: `${process.env.NEXT_PUBLIC_APP_URL}/trending-today`,
+			url: `${baseUrl}/trending-today`,
 		},
 		{
-			url: `${process.env.NEXT_PUBLIC_APP_URL}/trending-this-week`,
+			url: `${baseUrl}/trending-this-week`,
 		},
 		{
-			url: `${process.env.NEXT_PUBLIC_APP_URL}/category/ai-tools`,
+			url: `${baseUrl}/category/ai`,
 		},
 		{
-			url: `${process.env.NEXT_PUBLIC_APP_URL}/category/dev-tools`,
+			url: `${baseUrl}/category/dev`,
+		},
+		{
+			url: `${baseUrl}/browse`,
+		},
+		{
+			url: `${baseUrl}/list/best-ai-tools-for-developers`,
+		},
+		{
+			url: `${baseUrl}/list/new-ai-tools-this-week`,
+		},
+		{
+			url: `${baseUrl}/list/ai-agents-tools`,
+		},
+		{
+			url: `${baseUrl}/list/frontend-developer-tools`,
+		},
+		{
+			url: `${baseUrl}/list/backend-development-tools`,
+		},
+		{
+			url: `${baseUrl}/list/devops-tools`,
 		},
 	];
 }

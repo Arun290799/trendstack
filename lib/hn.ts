@@ -1,4 +1,5 @@
 import { calculateScore } from "./ranking";
+import { extractHNKeywords } from "./keyword-extraction";
 
 export interface HNTrend {
 	id: string;
@@ -9,6 +10,7 @@ export interface HNTrend {
 	category: string;
 	createdAt: number;
 	upvotes: number;
+	keywords: string[];
 }
 
 export async function fetchHNTrends(): Promise<HNTrend[]> {
@@ -36,6 +38,8 @@ export async function fetchHNTrends(): Promise<HNTrend[]> {
 				// HN has its own score (upvotes), let's map HN upvotes to "stars" in ranking logic
 				const stars = story.score || 0;
 
+				const keywords = extractHNKeywords(story.title || "", story.tags || [], story.url || "");
+
 				return {
 					id: `hn-${story.id}`,
 					title: story.title,
@@ -45,6 +49,7 @@ export async function fetchHNTrends(): Promise<HNTrend[]> {
 					category: "dev", // Default to dev, AI can be inferred later if needed
 					createdAt: story.time || 0,
 					upvotes: stars,
+					keywords,
 				};
 			});
 	} catch (error) {

@@ -79,6 +79,7 @@ export type TrendCountAggregateOutputType = {
   summary: number
   category: number
   postCreatedAt: number
+  keywords: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -138,6 +139,7 @@ export type TrendCountAggregateInputType = {
   summary?: true
   category?: true
   postCreatedAt?: true
+  keywords?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -240,6 +242,7 @@ export type TrendGroupByOutputType = {
   summary: string | null
   category: string
   postCreatedAt: Date
+  keywords: string[]
   createdAt: Date
   updatedAt: Date
   _count: TrendCountAggregateOutputType | null
@@ -278,6 +281,7 @@ export type TrendWhereInput = {
   summary?: Prisma.StringNullableFilter<"Trend"> | string | null
   category?: Prisma.StringFilter<"Trend"> | string
   postCreatedAt?: Prisma.DateTimeFilter<"Trend"> | Date | string
+  keywords?: Prisma.StringNullableListFilter<"Trend">
   createdAt?: Prisma.DateTimeFilter<"Trend"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Trend"> | Date | string
 }
@@ -293,6 +297,7 @@ export type TrendOrderByWithRelationInput = {
   summary?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrder
   postCreatedAt?: Prisma.SortOrder
+  keywords?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -311,6 +316,7 @@ export type TrendWhereUniqueInput = Prisma.AtLeast<{
   summary?: Prisma.StringNullableFilter<"Trend"> | string | null
   category?: Prisma.StringFilter<"Trend"> | string
   postCreatedAt?: Prisma.DateTimeFilter<"Trend"> | Date | string
+  keywords?: Prisma.StringNullableListFilter<"Trend">
   createdAt?: Prisma.DateTimeFilter<"Trend"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Trend"> | Date | string
 }, "id">
@@ -326,6 +332,7 @@ export type TrendOrderByWithAggregationInput = {
   summary?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrder
   postCreatedAt?: Prisma.SortOrder
+  keywords?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.TrendCountOrderByAggregateInput
@@ -349,6 +356,7 @@ export type TrendScalarWhereWithAggregatesInput = {
   summary?: Prisma.StringNullableWithAggregatesFilter<"Trend"> | string | null
   category?: Prisma.StringWithAggregatesFilter<"Trend"> | string
   postCreatedAt?: Prisma.DateTimeWithAggregatesFilter<"Trend"> | Date | string
+  keywords?: Prisma.StringNullableListFilter<"Trend">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Trend"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Trend"> | Date | string
 }
@@ -364,6 +372,7 @@ export type TrendCreateInput = {
   summary?: string | null
   category: string
   postCreatedAt: Date | string
+  keywords?: Prisma.TrendCreatekeywordsInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -379,6 +388,7 @@ export type TrendUncheckedCreateInput = {
   summary?: string | null
   category: string
   postCreatedAt: Date | string
+  keywords?: Prisma.TrendCreatekeywordsInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -394,6 +404,7 @@ export type TrendUpdateInput = {
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.StringFieldUpdateOperationsInput | string
   postCreatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  keywords?: Prisma.TrendUpdatekeywordsInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -409,6 +420,7 @@ export type TrendUncheckedUpdateInput = {
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.StringFieldUpdateOperationsInput | string
   postCreatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  keywords?: Prisma.TrendUpdatekeywordsInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -424,6 +436,7 @@ export type TrendCreateManyInput = {
   summary?: string | null
   category: string
   postCreatedAt: Date | string
+  keywords?: Prisma.TrendCreatekeywordsInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -439,6 +452,7 @@ export type TrendUpdateManyMutationInput = {
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.StringFieldUpdateOperationsInput | string
   postCreatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  keywords?: Prisma.TrendUpdatekeywordsInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -454,8 +468,17 @@ export type TrendUncheckedUpdateManyInput = {
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.StringFieldUpdateOperationsInput | string
   postCreatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  keywords?: Prisma.TrendUpdatekeywordsInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type TrendCountOrderByAggregateInput = {
@@ -469,6 +492,7 @@ export type TrendCountOrderByAggregateInput = {
   summary?: Prisma.SortOrder
   category?: Prisma.SortOrder
   postCreatedAt?: Prisma.SortOrder
+  keywords?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -515,6 +539,10 @@ export type TrendSumOrderByAggregateInput = {
   score?: Prisma.SortOrder
 }
 
+export type TrendCreatekeywordsInput = {
+  set: string[]
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -535,6 +563,11 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
+export type TrendUpdatekeywordsInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
 
 
 export type TrendSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -548,6 +581,7 @@ export type TrendSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   summary?: boolean
   category?: boolean
   postCreatedAt?: boolean
+  keywords?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["trend"]>
@@ -563,6 +597,7 @@ export type TrendSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   summary?: boolean
   category?: boolean
   postCreatedAt?: boolean
+  keywords?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["trend"]>
@@ -578,6 +613,7 @@ export type TrendSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   summary?: boolean
   category?: boolean
   postCreatedAt?: boolean
+  keywords?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["trend"]>
@@ -593,11 +629,12 @@ export type TrendSelectScalar = {
   summary?: boolean
   category?: boolean
   postCreatedAt?: boolean
+  keywords?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type TrendOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "url" | "source" | "stars" | "comments" | "score" | "summary" | "category" | "postCreatedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["trend"]>
+export type TrendOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "url" | "source" | "stars" | "comments" | "score" | "summary" | "category" | "postCreatedAt" | "keywords" | "createdAt" | "updatedAt", ExtArgs["result"]["trend"]>
 
 export type $TrendPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Trend"
@@ -613,6 +650,7 @@ export type $TrendPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     summary: string | null
     category: string
     postCreatedAt: Date
+    keywords: string[]
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["trend"]>
@@ -1048,6 +1086,7 @@ export interface TrendFieldRefs {
   readonly summary: Prisma.FieldRef<"Trend", 'String'>
   readonly category: Prisma.FieldRef<"Trend", 'String'>
   readonly postCreatedAt: Prisma.FieldRef<"Trend", 'DateTime'>
+  readonly keywords: Prisma.FieldRef<"Trend", 'String[]'>
   readonly createdAt: Prisma.FieldRef<"Trend", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Trend", 'DateTime'>
 }
