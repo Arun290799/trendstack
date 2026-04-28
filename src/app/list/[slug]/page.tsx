@@ -33,13 +33,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 		};
 	}
 
+	const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+
 	return {
 		title: config.title,
 		description: config.description,
+		keywords: config.keywords || ["AI tools", "developer tools", "trending tools", "software development"],
 		openGraph: {
 			title: config.title,
 			description: config.description,
+			url: `${baseUrl}/list/${slug}`,
 			type: "website",
+			siteName: "TrendStack",
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: config.title,
+			description: config.description,
 		},
 	};
 }

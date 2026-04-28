@@ -6,6 +6,22 @@ export const metadata: Metadata = {
 	title: "Browse All Pages - TrendStack",
 	description:
 		"Explore all curated pages on TrendStack. Browse AI tools, developer tools, and trending resources organized by category.",
+	keywords: [
+		"browse pages",
+		"AI tools",
+		"developer tools",
+		"trending resources",
+		"curated collections",
+		"software development",
+		"open source tools",
+	],
+	openGraph: {
+		title: "Browse All Pages - TrendStack",
+		description:
+			"Explore all curated pages on TrendStack. Browse AI tools, developer tools, and trending resources organized by category.",
+		url: `${process.env.NEXT_PUBLIC_APP_URL}/browse`,
+		type: "website",
+	},
 };
 
 interface PageGroup {

@@ -11,6 +11,22 @@ export const metadata: Metadata = {
 	title: "Trending Today - TrendStack",
 	description:
 		"Discover the hottest trending tools and projects today. Stay updated with the latest developments in AI, development tools, and tech innovations.",
+	keywords: [
+		"trending today",
+		"AI tools",
+		"developer tools",
+		"GitHub trending",
+		"tech trends",
+		"new tools",
+		"software development",
+	],
+	openGraph: {
+		title: "Trending Today - TrendStack",
+		description:
+			"Discover the hottest trending tools and projects today. Stay updated with the latest developments in AI, development tools, and tech innovations.",
+		url: `${process.env.NEXT_PUBLIC_APP_URL}/trending-today`,
+		type: "website",
+	},
 };
 
 async function TrendingTodayContent() {

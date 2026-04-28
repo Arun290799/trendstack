@@ -11,6 +11,22 @@ export const metadata: Metadata = {
 	title: "Trending This Week - TrendStack",
 	description:
 		"Explore the most popular tools and projects trending this week. Get insights into what's capturing the attention of the developer community.",
+	keywords: [
+		"trending this week",
+		"AI tools",
+		"developer tools",
+		"GitHub trending",
+		"tech trends",
+		"popular tools",
+		"software development",
+	],
+	openGraph: {
+		title: "Trending This Week - TrendStack",
+		description:
+			"Explore the most popular tools and projects trending this week. Get insights into what's capturing the attention of the developer community.",
+		url: `${process.env.NEXT_PUBLIC_APP_URL}/trending-this-week`,
+		type: "website",
+	},
 };
 
 async function TrendingThisWeekContent() {
