@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { TrendCard } from "@/components/TrendCard";
+import { PageLoader } from "@/components/PageLoader";
 import { getTrendsFromToday } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
@@ -11,7 +13,7 @@ export const metadata: Metadata = {
 		"Discover the hottest trending tools and projects today. Stay updated with the latest developments in AI, development tools, and tech innovations.",
 };
 
-export default async function TrendingToday() {
+async function TrendingTodayContent() {
 	const trends = await getTrendsFromToday(30);
 
 	return (
@@ -74,5 +76,13 @@ export default async function TrendingToday() {
 				</div>
 			</div>
 		</div>
+	);
+}
+
+export default async function TrendingToday() {
+	return (
+		<Suspense fallback={<PageLoader />}>
+			<TrendingTodayContent />
+		</Suspense>
 	);
 }

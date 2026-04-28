@@ -1,7 +1,9 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { getPageConfig } from "@/lib/pages-config";
 import { TrendCard } from "@/components/TrendCard";
+import { PageLoader } from "@/components/PageLoader";
 import { applyScoring } from "@/lib/scoring";
 
 interface Trend {
@@ -93,8 +95,7 @@ async function fetchTrends(config: any): Promise<Trend[]> {
 	}
 }
 
-export default async function DynamicPage({ params }: PageProps) {
-	const { slug } = await params;
+async function DynamicPageContent({ slug }: { slug: string }) {
 	const config = getPageConfig(slug);
 
 	// 404 - Slug not found
@@ -130,14 +131,14 @@ export default async function DynamicPage({ params }: PageProps) {
 					</Link>
 					<span className="text-gray-400">|</span>
 					<Link
-						href="/category/ai-tools"
+						href="/category/ai"
 						className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
 					>
 						AI Tools
 					</Link>
 					<span className="text-gray-400">|</span>
 					<Link
-						href="/category/dev-tools"
+						href="/category/dev"
 						className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
 					>
 						Dev Tools
@@ -210,5 +211,14 @@ export default async function DynamicPage({ params }: PageProps) {
 				</div>
 			</div>
 		</div>
+	);
+}
+
+export default async function DynamicPage({ params }: PageProps) {
+	const { slug } = await params;
+	return (
+		<Suspense fallback={<PageLoader />}>
+			<DynamicPageContent slug={slug} />
+		</Suspense>
 	);
 }

@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { TrendCard } from "@/components/TrendCard";
+import { PageLoader } from "@/components/PageLoader";
 import { getTrendsFromWeek } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
@@ -11,7 +13,7 @@ export const metadata: Metadata = {
 		"Explore the most popular tools and projects trending this week. Get insights into what's capturing the attention of the developer community.",
 };
 
-export default async function TrendingThisWeek() {
+async function TrendingThisWeekContent() {
 	const trends = await getTrendsFromWeek(30);
 
 	return (
@@ -76,5 +78,13 @@ export default async function TrendingThisWeek() {
 				</div>
 			</div>
 		</div>
+	);
+}
+
+export default async function TrendingThisWeek() {
+	return (
+		<Suspense fallback={<PageLoader />}>
+			<TrendingThisWeekContent />
+		</Suspense>
 	);
 }
